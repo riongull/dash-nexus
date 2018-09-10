@@ -12,7 +12,7 @@ function sortObj(obj) {
 const proposalInputs = sortObj(unsortedProposalInputs);
 
 // serialize proposal using node buffer
-const proposalString = '[[proposal,' + JSON.stringify(proposalInputs) +']]';
+const proposalString = '[[\"proposal\",' + JSON.stringify(proposalInputs) +']]';
 const proposalBuffer = new Buffer(proposalString);
 const proposalHex = proposalBuffer.toString('hex');
 
