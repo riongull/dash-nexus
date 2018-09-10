@@ -1,4 +1,4 @@
-module.exports = async (data, id, stringify) => {
+module.exports = (data, id, stringify) => {
   id = id || 'data';
   stringify === undefined 
     ? console.log(`\n${id}: \n${data}\n`)
