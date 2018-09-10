@@ -128,11 +128,11 @@ GovObject.prototype.checkedSerialize = function(opts) {
 };
 
 GovObject.prototype.serialize = function(unsafe) {
-    if (true === unsafe || unsafe && unsafe.disableAll) {
-        return this.uncheckedSerialize();
-    } else {
-        return this.checkedSerialize(unsafe);
-    }
+    // if (true === unsafe || unsafe && unsafe.disableAll) {
+    //     return this.uncheckedSerialize();
+    // } else {
+    //     return this.checkedSerialize(unsafe);
+    // }
 };
 
 GovObject.prototype.uncheckedSerialize = GovObject.prototype.toString = function() {
