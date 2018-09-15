@@ -12,9 +12,9 @@
   "devDependencies": {},
   "scripts": {
     "test": "node serialize-proposal/test.js",
-    "darkcoin": "node playground/darkcoin-client.js",
-    "dashd": "node playground/dashd-rpc.js",
-    "insight": "node playground/insight-api.js"
+    "darkcoin": "node client-libraries/darkcoin-client.js",
+    "dashd": "node client-libraries/dashd-rpc.js",
+    "insight": "node client-libraries/insight-api.js"
   },
   "author": "",
   "license": "ISC"
