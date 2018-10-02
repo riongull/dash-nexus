@@ -3,6 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@dashevo/dashd-rpc": "^1.1.0",
+    "ajv": "^6.5.3",
+    "axios": "^0.18.0",
+    "darkcoin-client": "^0.1.4",
     "react": "^16.5.1",
     "react-dom": "^16.5.1",
     "react-scripts": "1.1.5"
