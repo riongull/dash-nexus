@@ -14,7 +14,8 @@ export class DashData extends React.Component {
       darkcoinClient,
       dashdRPCClient,
       block1: {},
-      block2: {}
+      info: {},
+      walletInfo: {}
     }
   }
 
@@ -23,13 +24,16 @@ export class DashData extends React.Component {
     console.log(this.props)
     const dashOrgResponse = await fetch(this.props.apiPath);
     const block1 = await dashOrgResponse.json();
-    // const dashdRPCClientResponse = await dashdRPCClient.getInfo(); // throwing CORS error
-    // const block2 = dashdRPCClientResponse.result; // ignore til fixed
+    const dashdRPCClientResponse = await dashdRPCClient.getInfo(); // throwing CORS error
+    const info = dashdRPCClientResponse.result; // ignore til fixed
+    // const darkcoinClientResponse = await darkcoinClient.getWalletInfo(); // throwing CORS error
+    // const walletInfo = darkcoinClientResponse.result; // ignore til fixed
 
     await this.setState({
       isLoading: false,
       block1,
-      // block2, // ignore til fixed
+      info, // ignore til fixed
+      // walletInfo, // ignore til fixed
     });
   }
 
