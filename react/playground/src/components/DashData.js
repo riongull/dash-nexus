@@ -1,10 +1,14 @@
 import React from 'react';
 import DashdRPCClient from '@dashevo/dashd-rpc/promise';
 import { DarkcoinClient } from 'darkcoin-client';
-import { dashdRPCConfig, darkcoinClientConfig } from '../data';
+import { dashdConfig, darkcoinConfig, proxyConfig } from '../data';
 
-const darkcoinClient = new DarkcoinClient(darkcoinClientConfig);
-const dashdRPCClient = new DashdRPCClient(dashdRPCConfig);
+const { protocol:pc, host:h, port:p } = proxyConfig;
+const darkcoinProxyConfig = {...darkcoinConfig, url: `${pc}://${h}:${p}`};
+const dashdProxyConfig = {...dashdConfig, ...proxyConfig};
+
+const darkcoinClient = new DarkcoinClient(darkcoinProxyConfig);
+const dashdClient = new DashdRPCClient(dashdProxyConfig);
 
 export class DashData extends React.Component {
   constructor(props) {
@@ -12,29 +16,33 @@ export class DashData extends React.Component {
     this.state = {
       isLoading: false,
       darkcoinClient,
-      dashdRPCClient,
+      dashdClient,
       block1: {},
-      info: {},
-      walletInfo: {}
+      walletInfo: {},
+      info: {}
     }
   }
 
   fetchData = async () => {
-    console.log(this.state);
-    console.log(this.props)
-    const dashOrgResponse = await fetch(this.props.apiPath);
-    const block1 = await dashOrgResponse.json();
-    const dashdRPCClientResponse = await dashdRPCClient.getInfo(); // throwing CORS error
-    const info = dashdRPCClientResponse.result; // ignore til fixed
-    // const darkcoinClientResponse = await darkcoinClient.getWalletInfo(); // throwing CORS error
-    // const walletInfo = darkcoinClientResponse.result; // ignore til fixed
-
-    await this.setState({
-      isLoading: false,
-      block1,
-      info, // ignore til fixed
-      // walletInfo, // ignore til fixed
-    });
+    try {
+      console.log(this.state);
+      const dashOrgResponse = await fetch(this.props.apiPath);
+      const block1 = await dashOrgResponse.json();
+      const darkcoinClientResponse = await darkcoinClient.getWalletInfo(); // throwing CORS error
+      const walletInfo = darkcoinClientResponse.result; // ignore til fixed
+      const dashdRPCClientResponse = await dashdClient.getInfo(); // throwing CORS error
+      const info = dashdRPCClientResponse.result; // ignore til fixed
+  
+      await this.setState({
+        isLoading: false,
+        block1,
+        walletInfo, // ignore til fixed
+        info, // ignore til fixed
+      });
+      
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   componentDidMount() {

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { DashDataConsumer } from './DashDataConsumer';
-import { Insight } from './Insight';
+// import { Insight } from './Insight';
 
 export default class App extends Component {
   render() {
@@ -12,8 +12,8 @@ export default class App extends Component {
         <div>
           <p>Data from DashData component:</p>
           <DashDataConsumer/>
-          <p>Data from dash.org insight API:</p>
-          <Insight/>
+          {/* <p>Data from dash.org insight API:</p>
+          <Insight/> */}
         </div>
       </div>
     );

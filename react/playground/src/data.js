@@ -1,10 +1,15 @@
 module.exports = {
-  darkcoinClientConfig: {
+  proxyConfig: {
+    protocol: 'http',
+    host: '149.28.243.63',
+    port: 4000
+  },
+  darkcoinConfig: {
     url: 'http://149.28.243.63:9998',
     user: '790a68db81a7295549bb00dcbfe660bd3f4b3e71928476e6bc8253b770388383',
     password: 'ee87f005f484029ce4f39d3a8fcb9ed84f54ad78b98ebe1241980ecc020dc879'
   },
-  dashdRPCConfig: {
+  dashdConfig: {
     protocol: 'http',
     host: '149.28.243.63',
     port: 9998,
